@@ -10,11 +10,13 @@
             height: 100vh;
             margin: 0;
             font-family: "Yu Gothic", sans-serif;
-            background: #f6f6f6;
+            background: #15171b;
+            color: #e5e7eb;
             text-align: center;
             overflow: hidden;
         }
 
+        /* コントロール */
         #controls {
             display: flex;
             flex-wrap: wrap;
@@ -24,6 +26,7 @@
             padding: 0.8vw 0;
         }
 
+        /* ボード */
         #board {
             display: grid;
             grid-template-columns: repeat(6, 1fr);
@@ -36,65 +39,89 @@
             margin: 0 auto;
         }
 
+        /* プレイヤーカード */
         .player {
             width: 13vw;
             height: 35vh;
-            background: white;
-            border-radius: 0.8vw;
-            box-shadow: 0 0 0.4vw rgba(0, 0, 0, 0.3);
+            background: #23262d;
+            border: 1px solid #393d46;
+            border-radius: 3px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
             padding: 1vw;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: space-between;
-            transition: 0.3s;
+            transition: 0.2s;
             font-weight: bold;
             font-size: 4vh;
+            box-sizing: content-box;
         }
 
+        /* 休み・非アクティブ */
         .inactive {
-            background: #ddd;
-            color: #888;
+            background: #1b1d22;
+            color: #656b76;
+            border-color: #292c33;
         }
 
+        /* 抜け */
         .winner {
-            background: red;
-            color: #000;
+            background: #681f29;
+            color: #ffffff;
+            border: 1px solid #a33b48;
             font-weight: bold;
         }
 
         .winner-text {
             font-size: 3vw;
-            color: white;
+            color: #ffffff;
         }
 
         .score {
             font-size: 4vw;
             font-weight: bold;
+            color: #f0f1f3;
         }
 
         .status {
             font-size: 2vw;
             font-weight: bold;
             height: 2.5vw;
+            color: #d0a64e;
         }
 
         .lock {
             font-size: 3vw;
-            color: black;
+            color: #d0a64e;
             position: relative;
             top: -2vw;
             display: inline-block;
         }
 
-button {
-    outline: none;
-    border: none;
-}
-button:focus {
-    outline: none;
-}
-        
+        /* ボタン共通 */
+        button {
+            outline: none;
+            border: none;
+            cursor: pointer;
+            transition: 0.15s;
+        }
+
+        button:focus {
+            outline: none;
+        }
+
+        button:active:not(:disabled) {
+            filter: brightness(1.25);
+            transform: scale(0.96);
+        }
+
+        button:disabled {
+            cursor: default;
+            opacity: 0.25;
+        }
+
+        /* アクションボタン */
         .btns {
             display: flex;
             gap: 0.6vw;
@@ -103,81 +130,113 @@ button:focus {
             flex-wrap: wrap;
         }
 
-        /* ======== 統一アクションボタン ======== */
         .actionBtn {
             flex: 1;
             aspect-ratio: 1;
-            border: none;
-            border-radius: 0.8vw;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 3px;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 2.5vw;
             font-weight: bold;
-            transition: 0.2s;
+            transition: 0.15s;
             color: white;
         }
 
         .action-plus {
-            background: red;
+            background: #a9323c;
+        }
+
+        .action-plus:hover:not(:disabled) {
+            background: #c5414b;
         }
 
         .action-miss {
-            background: blue;
+            background: #285b91;
+        }
+
+        .action-miss:hover:not(:disabled) {
+            background: #3474b3;
         }
 
         .action-reset {
-            background: gray;
+            background: #484d56;
         }
 
+        .action-reset:hover {
+            background: #606671;
+        }
+
+        /* 抜けた枠のリセット */
         .reset {
             flex: none;
             aspect-ratio: 2;
             width: 85%;
             font-size: 1.5vw;
-            background: gray;
+            background: #484d56;
             color: white;
-            border-radius: 0.6vw;
+            border-radius: 3px;
         }
 
+        .reset:hover {
+            background: #606671;
+        }
+
+        /* 上部コントロールボタン */
         .controlBtn {
             min-width: 8vw;
             height: 4vw;
-            border: none;
-            border-radius: 0.8vw;
+            border: 1px solid #444a55;
+            border-radius: 3px;
             font-weight: bold;
             cursor: pointer;
-            transition: 0.3s;
+            transition: 0.15s;
+            background: #292d35;
+            color: #e5e7eb;
         }
 
         .GreenBtn {
-            background: #4CAF50;
+            background: #285b50;
+            border-color: #367365;
             color: white;
             font-size: 90%;
         }
 
+        .GreenBtn:hover {
+            background: #347363;
+        }
+
         .PinkBtn {
-            background: rgb(255, 0, 183);
+            background: #63313b;
+            border-color: #85414d;
             color: white;
             font-size: 70%;
         }
 
+        .PinkBtn:hover {
+            background: #82404c;
+        }
+
+        /* 数値入力 */
         #controls input[type="number"] {
             width: 3vw;
             padding: 1vw 1vw;
-            border: 0.1vw solid #ccc;
-            border-radius: 0.5vw;
+            border: 1px solid #454b56;
+            border-radius: 2px;
             text-align: center;
             font-size: 2vw;
             font-weight: bold;
             margin: 1.5vw 0;
-            background: white;
+            background: #252932;
+            color: #ffffff;
         }
 
         #controls label {
             font-weight: bold;
             font-size: 2vw;
+            color: #c5c9d0;
         }
 
         #KaiYashumi {
@@ -188,6 +247,7 @@ button:focus {
             font-weight: bold;
             font-size: 3vw;
             margin-right: 3vw;
+            color: #e0b65e;
         }
     </style>
 </head>
